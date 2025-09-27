@@ -23,7 +23,7 @@ public class Cliente {
     @Column(nullable = false)
     private String nombreCompleto;
     
-    @Column(unique = true, nullable = false, length = 15)
+    @Column(unique = true, nullable = false, length = 13)
     private String dpi;
     
     private LocalDate fechaNacimiento;
@@ -38,10 +38,10 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nombreCompleto, String dni,
+    public Cliente(String nombreCompleto, String dpi    ,
             String email) {
         this.nombreCompleto = nombreCompleto;
-        this.dpi = dni;
+        this.dpi = dpi;
         this.email = email;
     }
 
@@ -65,8 +65,32 @@ public class Cliente {
         return dpi;
     }
 
-    public void setDpi(String dni) {
-        if (dni.length() < 8) {
+    public String getPassword() {
+        return password;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setDpi(String dpi) {
+        if (dpi.length() < 13) {
             throw new IllegalArgumentException("El DPI debe tener al menos 13 digitos");
         }
         this.dpi = dpi;

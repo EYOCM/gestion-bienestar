@@ -6,29 +6,43 @@ package gt.edu.umg.programacion2.proyectoFinalProgra02.gestionBienestar.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
+import lombok.Data;
 
 /**
  *
  * @author JAED07
  */
+@Data
 public class SolicitudDeCreacionDeCliente {
 
     @NotBlank(message = "El nombre es obligatorio")
     private String nombreCompleto;
 
     @NotBlank(message = "El DPI es obligatorio")
-    @Size(min = 13, message = "El DPI debe tener al menos 13 dijitos")
-    private String DPI;
-
+    @Size(min = 13, max = 13, message = "El DPI debe tener al menos 13 dijitos")
+    private String dpi;
+    @NotNull
     private LocalDate fechaNacimiento;
 
+    @NotBlank
     @Size(max = 15, message = "telefono demasiado largo")
     private String telefono;
 
     @Email(message = "Formato de Email invalido")
     private String email;
+    
+    @NotBlank private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getNombreCompleto() {
         return nombreCompleto;
@@ -38,12 +52,12 @@ public class SolicitudDeCreacionDeCliente {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public String getDPI() {
-        return DPI;
+    public String getDpi() {
+        return dpi;
     }
 
-    public void setDPI(String DPI) {
-        this.DPI = DPI;
+    public void setDpi(String dpi) {
+        this.dpi = dpi;
     }
 
     public LocalDate getFechaNacimiento() {
